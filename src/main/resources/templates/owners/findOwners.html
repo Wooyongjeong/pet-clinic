@@ -1,12 +1,28 @@
 <!doctype html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include/header"></th:block>
+    <style>
+        .container { width: 60% }
+        .btn-primary { margin-left: 15% }
+        .btn-success { margin-top: 20px }
+    </style>
 </head>
 <body>
 <th:block th:include="include/navigation"></th:block>
-<h1>findOwners</h1>
-
+<div class="container">
+    <h3>Find Owners</h3>
+    <form action="/owners/find" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="name">보호자 이름</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" name="name" placeholder="홍길동" />
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">🔍검색</button>
+    </form>
+    <a class="btn btn-success" href="/owners/new" role="button">보호자 등록</a>
+</div> <!-- /container -->
 </body>
-<th:block th:include="include/header"></th:block>
+<th:block th:include="include/footer"></th:block>
 </html>
