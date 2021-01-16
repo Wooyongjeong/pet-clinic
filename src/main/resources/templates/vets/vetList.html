@@ -2,11 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include/header"></th:block>
+    <style>
+        .container { width: 50% }
+    </style>
 </head>
 <body>
 <th:block th:include="include/navigation"></th:block>
-<h1>Vets</h1>
-
+<div class="container">
+    <table class="table table-condensed">
+        <thead>
+            <th>이름</th>
+            <th>전공</th>
+        </thead>
+        <tbody>
+            <tr th:each="vets: ${vetsList}">
+                <td th:text="${vets.name}">name</td>
+                <td th:text="${vets.specialty"}>specialty</td>
+            </tr>
+        </tbody>
+    </table>
+</div> <!-- /container -->
 </body>
 <th:block th:include="include/footer"></th:block>
 </html>
