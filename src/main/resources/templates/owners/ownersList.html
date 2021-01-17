@@ -1,0 +1,33 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include/header"></th:block>
+    <style>
+        .container { width: 50% }
+        h2 { margin-bottom: 20px }
+    </style>
+</head>
+<body>
+<th:block th:include="include/navigation"></th:block>
+<div class="container">
+    <h2>보호자 리스트</h2>
+    <div class="container-table">
+        <table class="table table-condensed">
+            <thead>
+            <th>이름</th>
+            <th>주소</th>
+            <th>핸드폰</th>
+            </thead>
+            <tbody>
+            <tr th:each="owners: ${ownersList}">
+                <td th:text="${owners.name}">이름</td>
+                <td th:text="${owners.address}">주소</td>
+                <td th:text="${owners.phone}">핸드폰</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+<th:block th:include="include/footer"></th:block>
+</body>
+</html>
