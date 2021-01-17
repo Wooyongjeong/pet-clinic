@@ -12,12 +12,6 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/vets")
-    public String vets(Model model) {
-        model.addAttribute("currentPage", "vets");
-        return "vets/vetList";
-    }
-
     @GetMapping("/oops")
     public String oops(Model model) {
         model.addAttribute("currentPage", "oops");
