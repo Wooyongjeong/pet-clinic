@@ -13,7 +13,7 @@
 <th:block th:include="include/navigation"></th:block>
 <div class="container">
     <div class="alert alert-danger" role="alert">
-        <p th:text="${message}"></p>
+        <p th:text="${'[status code ' + status + '] ' + message}"></p>
     </div>
 </div> <!-- /container -->
 <th:block th:include="include/footer"></th:block>
