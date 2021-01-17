@@ -1,0 +1,36 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include/header"></th:block>
+    <style>
+        .container { width: 60% }
+        .container-form { width: 60%; margin-left: 20%; }
+        .btn-primary { margin-left: 15% }
+        .btn-success { margin-top: 20px }
+    </style>
+</head>
+<body>
+<th:block th:include="include/navigation"></th:block>
+<div class="container">
+    <h3>Register</h3>
+    <div class="container-form">
+        <form action="/owners/new" method="post" class="form-horizontal">
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="홍길동"/>
+            </div>
+            <div class="form-group">
+                <label for="address">주소</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="경기 성남시 분당구 불정로 6"/>
+            </div>
+            <div class="form-group">
+                <label for="phone">핸드폰</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="01012345678"/>
+            </div>
+            <button type="submit" class="btn btn-success">등록</button>
+        </form>
+    </div>
+</div> <!-- /container -->
+<th:block th:include="include/footer"></th:block>
+</body>
+</html>
