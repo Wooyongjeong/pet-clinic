@@ -5,7 +5,7 @@
     <style>
         .container { width: 60% }
         .btn-primary { margin-left: 15% }
-        .btn-success { margin-top: 20px }
+        .container-btn { margin-top: 20px }
     </style>
 </head>
 <body>
@@ -21,8 +21,10 @@
         </div>
         <button type="submit" class="btn btn-primary">🔍검색</button>
     </form>
-    <a class="btn btn-primary" href="/owners/" role="button">보호자 리스트</a>
-    <a class="btn btn-success" href="/owners/new" role="button">보호자 등록</a>
+    <div class="container-btn">
+        <a class="btn btn-primary" href="/owners/" role="button">보호자 리스트</a>
+        <a class="btn btn-success" href="/owners/new" role="button">보호자 등록</a>
+    </div>
 </div> <!-- /container -->
 <th:block th:include="include/footer"></th:block>
 </body>
