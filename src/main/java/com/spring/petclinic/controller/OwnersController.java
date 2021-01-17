@@ -43,4 +43,12 @@ public class OwnersController {
         ownerService.join(owner);
         return "redirect:/";
     }
+
+    @GetMapping("/owners")
+    public String list(Model model) {
+        List<Owner> owners = ownerService.findOwners();
+        model.addAttribute("currentPage", "findOwners");
+        model.addAttribute("ownersList", owners);
+        return "owners/ownersList";
+    }
 }
