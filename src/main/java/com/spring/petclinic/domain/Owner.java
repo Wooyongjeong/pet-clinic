@@ -1,5 +1,7 @@
 package com.spring.petclinic.domain;
 
+import com.spring.petclinic.controller.OwnerForm;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +16,14 @@ public class Owner {
     private String name;
     private String address;
     private String phone;
+
+    public Owner() {}
+
+    public Owner(OwnerForm form) {
+        this.name = form.getName();
+        this.address = form.getAddress();
+        this.phone = form.getPhone();
+    }
 
     public Long getId() {
         return id;
@@ -45,5 +55,15 @@ public class Owner {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }
