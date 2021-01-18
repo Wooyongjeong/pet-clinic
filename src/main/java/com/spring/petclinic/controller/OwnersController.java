@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,7 +23,7 @@ public class OwnersController {
 
     @GetMapping("/owners/find")
     public String findOwners(Model model) {
-        model.addAttribute("currentPage", "findOwners");
+        model.addAttribute("currentPage", "owners");
         return "owners/findOwners";
     }
 
@@ -34,21 +35,22 @@ public class OwnersController {
 
     @GetMapping("/owners/new")
     public String createForm() {
-        return "owners/createForm";
+        return "owners/createOwnerForm";
     }
 
     @PostMapping("/owners/new")
     public String create(OwnerForm form) {
         Owner owner = new Owner(form);
-        ownerService.join(owner);
-        return "redirect:/";
+        Long id = ownerService.join(owner);
+        return "redirect:/owners/" + id;
     }
 
     @GetMapping("/owners")
     public String list(Model model) {
         List<Owner> owners = ownerService.findOwners();
-        model.addAttribute("currentPage", "findOwners");
+        model.addAttribute("currentPage", "owners");
         model.addAttribute("ownersList", owners);
         return "owners/ownersList";
     }
+
 }
