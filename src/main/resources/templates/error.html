@@ -7,13 +7,15 @@
             width : 60%;
             margin-left: 20%;
         }
+        h2 { margin-top: 0; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 <th:block th:include="include/navigation"></th:block>
 <div class="container">
     <div class="alert alert-danger" role="alert">
-        <p th:text="${'[status code ' + status + '] ' + message}"></p>
+        <h2 th:text="|[Status Code: ${status}]|"></h2>
+        <p th:text="${message}"></p>
     </div>
 </div> <!-- /container -->
 <th:block th:include="include/footer"></th:block>
