@@ -1,9 +1,9 @@
 package com.spring.petclinic;
 
 import com.spring.petclinic.repository.OwnerRepository;
-import com.spring.petclinic.repository.VetsRepository;
+import com.spring.petclinic.repository.VetRepository;
 import com.spring.petclinic.service.OwnerService;
-import com.spring.petclinic.service.VetsService;
+import com.spring.petclinic.service.VetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,12 +12,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringConfig {
     private final OwnerRepository ownerRepository;
-    private final VetsRepository vetsRepository;
+    private final VetRepository vetRepository;
 
     @Autowired
-    public SpringConfig(OwnerRepository ownerRepository, VetsRepository vetsRepository) {
+    public SpringConfig(OwnerRepository ownerRepository, VetRepository vetRepository) {
         this.ownerRepository = ownerRepository;
-        this.vetsRepository = vetsRepository;
+        this.vetRepository = vetRepository;
     }
 
     @Bean
@@ -26,7 +26,7 @@ public class SpringConfig {
     }
 
     @Bean
-    public VetsService vetsService() {
-        return new VetsService(vetsRepository);
+    public VetService vetsService() {
+        return new VetService(vetRepository);
     }
 }

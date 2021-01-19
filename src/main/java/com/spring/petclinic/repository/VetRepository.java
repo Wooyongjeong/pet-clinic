@@ -4,6 +4,6 @@ import com.spring.petclinic.domain.Vet;
 
 import java.util.List;
 
-public interface VetsRepository {
+public interface VetRepository {
     List<Vet> findAll();
 }

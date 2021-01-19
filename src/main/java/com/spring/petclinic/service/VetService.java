@@ -1,23 +1,23 @@
 package com.spring.petclinic.service;
 
 import com.spring.petclinic.domain.Vet;
-import com.spring.petclinic.repository.VetsRepository;
+import com.spring.petclinic.repository.VetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class VetsService {
-    private final VetsRepository vetsRepository;
+public class VetService {
+    private final VetRepository vetRepository;
 
     @Autowired
-    public VetsService(VetsRepository vetsRepository) {
-        this.vetsRepository = vetsRepository;
+    public VetService(VetRepository vetRepository) {
+        this.vetRepository = vetRepository;
     }
 
     /**
      * 전체 수의사 조회
      */
     public List<Vet> findVets() {
-        return vetsRepository.findAll();
+        return vetRepository.findAll();
     }
 }

@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface SpringDataJpaVetsRepository extends JpaRepository<Vet, Long>, VetsRepository {
+public interface SpringDataJpaVetRepository extends JpaRepository<Vet, Long>, VetRepository {
     @Override
     List<Vet> findAll();
 }
