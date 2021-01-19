@@ -24,12 +24,6 @@ public class OwnersController {
         return "owners/findOwners";
     }
 
-    @PostMapping("/owners/find")
-    public String findOwnersByName(@RequestParam("name") String name, Model model) {
-        System.out.println(name);
-        return "redirect:/";
-    }
-
     @GetMapping("/owners/new")
     public String createForm() {
         return "owners/createOwnerForm";
@@ -43,11 +37,17 @@ public class OwnersController {
     }
 
     @GetMapping("/owners")
-    public String list(Model model) {
-        List<Owner> owners = ownerService.findOwners();
+    public String list(@RequestParam(value = "phone", required = false) String phone, Model model) {
         model.addAttribute("currentPage", "owners");
-        model.addAttribute("ownersList", owners);
-        return "owners/ownersList";
+        if(phone.isBlank()) {
+            List<Owner> owners = ownerService.findOwners();
+            model.addAttribute("ownersList", owners);
+            return "owners/ownersList";
+        }
+        else {
+            Long ownerId = ownerService.findByPhone(phone);
+            return String.format("redirect:/owners/%d", ownerId);
+        }
     }
 
     @GetMapping("/owners/{id}")
@@ -71,4 +71,5 @@ public class OwnersController {
         Long ownerId = ownerService.update(id, form);
         return String.format("redirect:/owners/%d", ownerId);
     }
+
 }
