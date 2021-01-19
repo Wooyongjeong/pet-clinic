@@ -47,6 +47,6 @@ public class OwnerServiceIntegrationTest {
                 () -> ownerService.join(owner2));
 
         // Then
-        assertThat(e.getMessage()).isEqualTo("이미 존재하는 보호자 이름입니다.");
+        assertThat(e.getMessage()).isEqualTo("이미 등록된 핸드폰 번호입니다.");
     }
 }

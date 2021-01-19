@@ -1,11 +1,11 @@
 package com.spring.petclinic.repository;
 
-import com.spring.petclinic.domain.Vets;
+import com.spring.petclinic.domain.Vet;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface SpringDataJpaVetsRepository extends JpaRepository<Vets, Long>, VetsRepository {
+public interface SpringDataJpaVetsRepository extends JpaRepository<Vet, Long>, VetsRepository {
     @Override
-    List<Vets> findAll();
+    List<Vet> findAll();
 }
