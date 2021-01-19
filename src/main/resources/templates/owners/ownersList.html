@@ -20,7 +20,9 @@
             </thead>
             <tbody>
             <tr th:each="owners: ${ownersList}">
-                <td><a th:href="@{|/owners/${owners.id}|}" th:text="${owners.name}"></a></td>
+                <td>
+                    <a th:href="@{|/owners/${owners.id}|}" th:text="${owners.name}"></a>
+                </td>
                 <td th:text="${owners.address}">주소</td>
                 <td th:text="${owners.phone}">핸드폰</td>
             </tr>

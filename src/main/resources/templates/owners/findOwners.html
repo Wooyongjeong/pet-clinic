@@ -12,17 +12,17 @@
 <th:block th:include="include/navigation"></th:block>
 <div class="container">
     <h3>Find Owners</h3>
-    <form action="/owners/find" method="post" class="form-horizontal">
+    <form action="/owners" method="get" class="form-horizontal">
         <div class="form-group">
-            <label class="col-sm-2 control-label" for="name">보호자 이름</label>
+            <label class="col-sm-2 control-label" for="phone">보호자 핸드폰</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" name="name" placeholder="홍길동" />
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="01012345678" />
             </div>
         </div>
         <button type="submit" class="btn btn-primary">🔍검색</button>
     </form>
     <div class="container-btn">
-        <a class="btn btn-primary" href="/owners/" role="button">보호자 리스트</a>
+        <a class="btn btn-primary" href="/owners?phone=" role="button">보호자 리스트</a>
         <a class="btn btn-success" href="/owners/new" role="button">보호자 등록</a>
     </div>
 </div> <!-- /container -->
