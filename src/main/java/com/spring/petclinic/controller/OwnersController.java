@@ -60,4 +60,12 @@ public class OwnersController {
         model.addAttribute("owner", owner);
         return "owners/showOwner";
     }
+
+    @GetMapping("/owners/{id}/form")
+    public String updateForm(@PathVariable Long id, Model model) {
+        Owner owner = ownerService.findOne(id).get();
+        model.addAttribute("currentPage", "owners");
+        model.addAttribute("owner", owner);
+        return "owners/updateOwnerForm";
+    }
 }
