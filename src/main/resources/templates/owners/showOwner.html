@@ -1,0 +1,45 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include/header"></th:block>
+    <style>
+        .container { width: 50% }
+        h2 { margin-bottom: 20px }
+        .container-owner-btn { float: right }
+    </style>
+</head>
+<body>
+<th:block th:include="include/navigation"></th:block>
+<div class="container">
+    <div class="container-owner">
+        <div class="table-reponsive">
+            <h2>Owner Information</h2>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td>이름</td>
+                        <td th:text="${owner.name}"></td>
+                    </tr>
+                    <tr>
+                        <td>주소</td>
+                        <td th:text="${owner.address}"></td>
+                    </tr>
+                    <tr>
+                        <td>핸드폰</td>
+                        <td th:text="${owner.phone}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container-owner-btn">
+            <a class="btn btn-primary" role="button" th:href="@{|/owners/${owner.id}/form|}">보호자 정보 수정</a>
+            <a class="btn btn-success" role="button" th:href="@{|/owners/${owner.id}/pet/form|}">애완동물 추가</a>
+        </div>
+    </div>
+    <div class="container-pets">
+
+    </div>
+</div> <!-- /container -->
+<th:block th:include="include/footer"></th:block>
+</body>
+</html>
