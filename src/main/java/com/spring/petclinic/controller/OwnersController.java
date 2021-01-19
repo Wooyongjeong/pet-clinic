@@ -5,10 +5,7 @@ import com.spring.petclinic.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -67,5 +64,11 @@ public class OwnersController {
         model.addAttribute("currentPage", "owners");
         model.addAttribute("owner", owner);
         return "owners/updateOwnerForm";
+    }
+
+    @PutMapping("/owners/{id}")
+    public String update(@PathVariable Long id, OwnerForm form, Model model) {
+        Long ownerId = ownerService.update(id, form);
+        return String.format("redirect:/owners/%d", ownerId);
     }
 }
