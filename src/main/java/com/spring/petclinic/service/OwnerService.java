@@ -1,9 +1,9 @@
 package com.spring.petclinic.service;
 
+import com.spring.petclinic.controller.OwnerForm;
 import com.spring.petclinic.domain.Owner;
 import com.spring.petclinic.repository.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,10 +26,21 @@ public class OwnerService {
     }
 
     private void validateDuplicateOwner(Owner owner) {
-        ownerRepository.findByName(owner.getName())
+        ownerRepository.findByName(owner.getPhone())
                 .ifPresent(m -> {
-                    throw new IllegalStateException("이미 존재하는 보호자 이름입니다.");
+                    throw new IllegalStateException("이미 등록된 핸드폰 번호입니다.");
                 });
+    }
+
+    /*
+     * 회원 정보 수정
+     * */
+    public Long update(Long id, OwnerForm form) {
+        Owner owner = findOne(id).get();
+        owner.update(form);
+        validateDuplicateOwner(owner);
+        ownerRepository.save(owner);
+        return owner.getId();
     }
 
     /*

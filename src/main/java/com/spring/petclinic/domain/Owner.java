@@ -57,6 +57,12 @@ public class Owner {
         this.phone = phone;
     }
 
+    public void update(OwnerForm form) {
+        this.name = form.getName();
+        this.address = form.getAddress();
+        this.phone = form.getPhone();
+    }
+
     @Override
     public String toString() {
         return "Owner{" +
