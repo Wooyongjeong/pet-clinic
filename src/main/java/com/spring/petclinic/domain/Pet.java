@@ -1,11 +1,8 @@
 package com.spring.petclinic.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.spring.petclinic.controller.PetForm;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 public class Pet {
@@ -13,18 +10,21 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+    private String birthDate;
+    private String type;
+
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name="fk_pet_owner"))
-    @JsonProperty
+    @JoinColumn(name="owner_id")
     private Owner owner;
 
-    private String name;
+    public Pet() {}
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate birthDate;
-
-    @Transient
-    private List<Visit> visits;
+    public Pet(PetForm form) {
+        this.name = form.getName();
+        this.birthDate = form.getBirthDate();
+        this.type = form.getType();
+    }
 
     public Long getId() {
         return id;
@@ -32,14 +32,6 @@ public class Pet {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
     }
 
     public String getName() {
@@ -50,29 +42,38 @@ public class Pet {
         this.name = name;
     }
 
-    public LocalDate getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
-    public List<Visit> getVisits() {
-        return visits;
+    public String getType() {
+        return type;
     }
 
-    public void setVisits(List<Visit> visits) {
-        this.visits = visits;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override
     public String toString() {
         return "Pet{" +
                 "id=" + id +
-                ", owner=" + owner +
                 ", name='" + name + '\'' +
-                ", birthDate=" + birthDate +
+                ", birthDate='" + birthDate + '\'' +
+                ", type='" + type + '\'' +
+                ", owner=" + owner +
                 '}';
     }
 }

@@ -1,0 +1,47 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include/header"></th:block>
+    <style>
+        .container { width: 60% }
+        .container-form { width: 60%; margin-left: 20%; }
+        .btn-primary { margin-left: 15% }
+        .btn-success { margin-top: 20px }
+        h3 { margin-left: 10%; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+<th:block th:include="include/navigation"></th:block>
+<div class="container">
+    <h3>New Pet</h3>
+    <div class="container-form">
+        <form th:action="@{|/owners/${ownerId}/pet/new|}" method="post" class="form-horizontal">
+            <div class="form-group">
+                <label for="ownerName">보호자 이름</label>
+                <input type="text" class="form-control" id="ownerName" name="ownerName" th:value="${ownerName}" disabled />
+            </div>
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="초코"/>
+            </div>
+            <div class="form-group">
+                <label for="birthDate">생년월일</label>
+                <input type="text" class="form-control" id="birthDate" name="birthDate" placeholder="YYYY-mm-dd"/>
+            </div>
+            <div class="form-group">
+                <label for="type">종류</label>
+                <select class="form-control" id="type" name="type">
+                    <option>강아지</option>
+                    <option>고양이</option>
+                    <option>햄스터</option>
+                    <option>조류</option>
+                    <option>파충류</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">등록</button>
+        </form>
+    </div>
+</div> <!-- /container -->
+<th:block th:include="include/footer"></th:block>
+</body>
+</html>
