@@ -13,7 +13,7 @@
 <body>
 <th:block th:include="include/navigation"></th:block>
 <div class="container">
-    <h3>Edit Profile</h3>
+    <h3>Edit Owner Profile</h3>
     <div class="container-form">
         <form th:action="@{|/owners/${owner.id}/|}" method="post" class="form-horizontal">
             <input type="hidden" name="_method" value="PUT" />
@@ -29,7 +29,7 @@
                 <label for="phone">핸드폰</label>
                 <input type="text" class="form-control" id="phone" name="phone" placeholder="01012345678" th:value="${owner.phone}" readonly/>
             </div>
-            <button type="submit" class="btn btn-success">등록</button>
+            <button type="submit" class="btn btn-success">수정</button>
         </form>
     </div>
 </div> <!-- /container -->

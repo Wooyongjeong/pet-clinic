@@ -26,6 +26,12 @@ public class Pet {
         this.type = form.getType();
     }
 
+    public void update(PetForm form) {
+        this.name = form.getName();
+        this.birthDate = form.getBirthDate();
+        this.type = form.getType();
+    }
+
     public Long getId() {
         return id;
     }

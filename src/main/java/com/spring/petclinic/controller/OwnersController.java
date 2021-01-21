@@ -3,7 +3,6 @@ package com.spring.petclinic.controller;
 import com.spring.petclinic.domain.Owner;
 import com.spring.petclinic.domain.Pet;
 import com.spring.petclinic.service.OwnerService;
-import com.spring.petclinic.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +13,10 @@ import java.util.List;
 @Controller
 public class OwnersController {
     private OwnerService ownerService;
-    private PetService petService;
 
     @Autowired
-    public OwnersController(OwnerService ownerService, PetService petService) {
+    public OwnersController(OwnerService ownerService) {
         this.ownerService = ownerService;
-        this.petService = petService;
     }
 
     @GetMapping("/owners/find")
@@ -75,25 +72,9 @@ public class OwnersController {
     }
 
     @PutMapping("/owners/{id}")
-    public String update(@PathVariable Long id, OwnerForm form, Model model) {
+    public String update(@PathVariable Long id, OwnerForm form) {
         Long ownerId = ownerService.update(id, form);
         return String.format("redirect:/owners/%d", ownerId);
     }
 
-    @GetMapping("/owners/{id}/pet/new")
-    public String createPetForm(@PathVariable Long id, Model model) {
-        model.addAttribute("currentPage", "owners");
-        Owner owner = ownerService.findOne(id).get();
-        model.addAttribute("ownerId", owner.getId());
-        model.addAttribute("ownerName", owner.getName());
-        return "pets/createPetForm";
-    }
-
-    @PostMapping("/owners/{ownerId}/pet/new")
-    public String createPet(@PathVariable Long ownerId, PetForm form) {
-        Owner owner = ownerService.findOne(ownerId).get();
-        Pet pet = new Pet(form);
-        Long petId = petService.join(pet, owner);
-        return String.format("redirect:/owners/%d", ownerId);
-    }
 }

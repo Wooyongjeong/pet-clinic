@@ -1,0 +1,48 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include/header"></th:block>
+    <style>
+        .container { width: 60% }
+        .container-form { width: 60%; margin-left: 20%; }
+        .btn-primary { margin-left: 15% }
+        .btn-success { margin-top: 20px }
+        h3 { margin-left: 10%; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+<th:block th:include="include/navigation"></th:block>
+<div class="container">
+    <h3>Edit Pet Profile</h3>
+    <div class="container-form">
+        <form th:action="@{|/pets/${pet.id}|}" method="post" class="form-horizontal">
+            <input type="hidden" name="_method" value="PUT" />
+            <div class="form-group">
+                <label for="ownerName">보호자 이름</label>
+                <input type="text" class="form-control" id="ownerName" name="ownerName" th:value="${pet.owner.name}" disabled />
+            </div>
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="초코" th:value="${pet.name}"/>
+            </div>
+            <div class="form-group">
+                <label for="birthDate">생년월일</label>
+                <input type="text" class="form-control" id="birthDate" name="birthDate" placeholder="YYYY-mm-dd" th:value="${pet.birthDate}"/>
+            </div>
+            <div class="form-group">
+                <label for="type">종류</label>
+                <select class="form-control" id="type" name="type">
+                    <option th:selected="${pet.type} == '강아지'">강아지</option>
+                    <option th:selected="${pet.type} == '고양이'">고양이</option>
+                    <option th:selected="${pet.type} == '햄스터'">햄스터</option>
+                    <option th:selected="${pet.type} == '조류'">조류</option>
+                    <option th:selected="${pet.type} == '파충류'">파충류</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">수정</button>
+        </form>
+    </div>
+</div> <!-- /container -->
+<th:block th:include="include/footer"></th:block>
+</body>
+</html>

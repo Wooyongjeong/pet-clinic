@@ -10,6 +10,5 @@ import java.util.Optional;
 public interface PetRepository {
     Pet save(Pet pet);
     Optional<Pet> findById(Long id);
-    Optional<Pet> findByName(String name);
     List<Pet> findByOwnerId(Long ownerId);
 }

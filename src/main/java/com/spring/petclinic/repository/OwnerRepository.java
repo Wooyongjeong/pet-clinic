@@ -8,7 +8,6 @@ import java.util.Optional;
 public interface OwnerRepository {
     Owner save(Owner owner);
     Optional<Owner> findById(Long id);
-    Optional<Owner> findByName(String name);
     Optional<Owner> findByPhone(String phone);
     List<Owner> findAll();
 }
