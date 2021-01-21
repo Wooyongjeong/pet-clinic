@@ -1,0 +1,75 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include/header"></th:block>
+    <style>
+        .container { width: 50% }
+        h2 { margin-bottom: 20px }
+        .container-visits { margin-top: 5% }
+        .visits-form { margin-top: 5% }
+    </style>
+</head>
+<body>
+<th:block th:include="include/navigation"></th:block>
+<div class="container">
+    <div class="container-pet">
+        <div class="table-reponsive">
+            <h2>Pet Profile</h2>
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <td>이름</td>
+                    <td th:text="${pet.name}"></td>
+                </tr>
+                <tr>
+                    <td>생년월일</td>
+                    <td th:text="${pet.birthDate}"></td>
+                </tr>
+                <tr>
+                    <td>종류</td>
+                    <td th:text="${pet.type}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="visits-form">
+            <h2>New Visit</h2>
+            <form th:action="@{|/pets/${pet.id}/visits/new|}" method="post" class="form-inline">
+                <div class="form-group">
+                    <label for="visitDate">방문일자</label>
+                    <input type="date" class="form-control" id="visitDate" name="visitDate" />
+                </div>
+                <div class="form-group">
+                    <label for="description">설명</label>
+                    <input type="text" class="form-control" id="description" name="description" placeholder="내용" />
+                </div>
+                <button type="submit" class="btn btn-success">추가</button>
+            </form>
+        </div>
+    </div>
+    <div class="container-visits">
+        <h2>Visits</h2>
+        <div class="container-visits-tables row" th:each="visit: ${visits}">
+            <div class="col-md-11">
+                <table class="table table-hover">
+                    <tbody>
+                    <tr>
+                        <td>방문일자</td>
+                        <td th:text="${visit.visitDate}">birthDate</td>
+                    </tr>
+                    <tr>
+                        <td>설명</td>
+                        <td th:text="${visit.description}">type</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="visits-tables-btns col-md-1">
+                <a class="btn btn-primary" role="button" th:href="@{|/visits/${visit.id}/form|}">정보 수정</a>
+            </div>
+        </div> <!-- /container-visits-tables -->
+    </div>
+</div> <!-- /container -->
+<th:block th:include="include/footer"></th:block>
+</body>
+</html>

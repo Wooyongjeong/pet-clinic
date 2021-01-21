@@ -4,6 +4,7 @@ import com.spring.petclinic.domain.Owner;
 import com.spring.petclinic.domain.Pet;
 import com.spring.petclinic.service.OwnerService;
 import com.spring.petclinic.service.PetService;
+import com.spring.petclinic.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,7 @@ public class PetController {
         this.petService = petService;
     }
 
-    @GetMapping("/owners/{id}/pet/new")
+    @GetMapping("/owners/{id}/pets/new")
     public String createPetForm(@PathVariable Long id, Model model) {
         model.addAttribute("currentPage", "owners");
         Owner owner = ownerService.findOne(id).get();
@@ -32,7 +33,7 @@ public class PetController {
         return "pets/createPetForm";
     }
 
-    @PostMapping("/owners/{ownerId}/pet/new")
+    @PostMapping("/owners/{ownerId}/pets/new")
     public String createPet(@PathVariable Long ownerId, PetForm form) {
         Owner owner = ownerService.findOne(ownerId).get();
         Pet pet = new Pet(form);
@@ -52,4 +53,5 @@ public class PetController {
         Long ownerId = petService.update(id, form).getOwner().getId();
         return String.format("redirect:/owners/%d", ownerId);
     }
+
 }
