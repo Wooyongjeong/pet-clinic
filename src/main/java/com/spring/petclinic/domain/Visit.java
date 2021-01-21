@@ -24,6 +24,11 @@ public class Visit {
         this.description = form.getDescription();
     }
 
+    public void update(VisitForm form) {
+        this.visitDate = form.getVisitDate();
+        this.description = form.getDescription();
+    }
+
     public Long getId() {
         return id;
     }

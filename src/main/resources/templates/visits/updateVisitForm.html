@@ -1,0 +1,38 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include/header"></th:block>
+    <style>
+        .container { width: 60% }
+        .container-form { width: 60%; margin-left: 20%; }
+        .btn-primary { margin-left: 15% }
+        .btn-success { margin-top: 20px }
+        h3 { margin-left: 10%; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+<th:block th:include="include/navigation"></th:block>
+<div class="container">
+    <h3>Edit Visit</h3>
+    <div class="container-form">
+        <form th:action="@{|/visits/${visit.id}|}" method="post" class="form-horizontal">
+            <input type="hidden" name="_method" value="PUT" />
+            <div class="form-group">
+                <label for="name">애완동물 이름</label>
+                <input type="text" class="form-control" id="name" name="name" th:value="${visit.pet.name}" readonly />
+            </div>
+            <div class="form-group">
+                <label for="visitDate">방문일자</label>
+                <input type="date" class="form-control" id="visitDate" name="visitDate" th:value="${visit.visitDate}"/>
+            </div>
+            <div class="form-group">
+                <label for="description">설명</label>
+                <input type="text" class="form-control" id="description" name="description" th:value="${visit.description}"/>
+            </div>
+            <button type="submit" class="btn btn-success">수정</button>
+        </form>
+    </div>
+</div> <!-- /container -->
+<th:block th:include="include/footer"></th:block>
+</body>
+</html>

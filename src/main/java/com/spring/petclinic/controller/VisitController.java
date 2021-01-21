@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 
@@ -41,5 +42,20 @@ public class VisitController {
         Visit visit = new Visit(form);
         Long joinVisit = visitService.join(visit, pet);
         return String.format("redirect:/pets/%d/visits", id);
+    }
+
+    @GetMapping("/visits/{id}/form")
+    public String form(@PathVariable Long id, Model model) {
+        model.addAttribute("currentPage", "owners");
+        Visit visit = visitService.findOne(id).get();
+        model.addAttribute("visit", visit);
+        return "visits/updateVisitForm";
+    }
+
+    @PutMapping("/visits/{id}")
+    public String update(@PathVariable Long id, VisitForm form) {
+        Visit visit = visitService.update(id, form);
+        Long petId = visit.getPet().getId();
+        return String.format("redirect:/pets/%d/visits", petId);
     }
 }
