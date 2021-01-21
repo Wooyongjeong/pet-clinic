@@ -6,6 +6,9 @@
         .container { width: 50% }
         h2 { margin-bottom: 20px }
         .container-owner-btn { float: right }
+        .container-pets { margin-top: 15% }
+        .pets-tables-btns { display: inline-block }
+        .pets-tables-btns > a:nth-child(1) { margin-bottom: 10px }
     </style>
 </head>
 <body>
@@ -37,7 +40,31 @@
         </div>
     </div>
     <div class="container-pets">
-
+        <h2>애완동물 정보</h2>
+        <div class="container-pets-tables row" th:each="pet: ${pets}">
+            <div class="col-md-11">
+                <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <td>이름</td>
+                            <td th:text="${pet.name}">name</td>
+                        </tr>
+                        <tr>
+                            <td>생년월일</td>
+                            <td th:text="${pet.birthDate}">birthDate</td>
+                        </tr>
+                        <tr>
+                            <td>종류</td>
+                            <td th:text="${pet.type}">type</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pets-tables-btns col-md-1">
+                <a class="btn btn-primary" role="button" th:href="@{|/pets/${pet.id}/form|}">정보 수정</a>
+                <a class="btn btn-info" role="button" th:href="@{|/pets/${pet.id}/visits|}">방문 정보</a>
+            </div>
+        </div> <!-- /container-pets-tables -->
     </div>
 </div> <!-- /container -->
 <th:block th:include="include/footer"></th:block>

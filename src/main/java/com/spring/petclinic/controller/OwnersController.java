@@ -56,9 +56,13 @@ public class OwnersController {
 
     @GetMapping("/owners/{id}")
     public String show(@PathVariable Long id, Model model) {
-        Owner owner = ownerService.findOne(id).get();
         model.addAttribute("currentPage", "owners");
+        Owner owner = ownerService.findOne(id).get();
         model.addAttribute("owner", owner);
+        List<Pet> pets = owner.getPets();
+        if(!pets.isEmpty()) {
+            model.addAttribute("pets", pets);
+        }
         return "owners/showOwner";
     }
 
