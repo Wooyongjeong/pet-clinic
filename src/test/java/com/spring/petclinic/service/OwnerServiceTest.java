@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
-public class OwnerServiceIntegrationTest {
+public class OwnerServiceTest {
     @Autowired
     OwnerService ownerService;
     @Autowired
